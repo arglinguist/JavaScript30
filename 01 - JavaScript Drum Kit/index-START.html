@@ -62,18 +62,19 @@
     targetDiv.classList.toggle('playing');
   }
   
+  function findTarget(fullList,target){
+    for(i=0; i<fullList.length; i++){  
+      let currentSelection=fullList[i];
+      if (currentSelection.getAttribute('data-key')==target){
+        return currentSelection;  
+      }   
+    }
+  }
   function activateKey(e) {
     let code = e.keyCode; 
     let divList = document.querySelectorAll("div.key");
    
-    let div;
-    for(i=0; i<divList.length; i++){  
-      let currentDiv=divList[i];
-      if (currentDiv.getAttribute('data-key')==code){
-        div=currentDiv;  
-        break;
-      }   
-    }
+    let div = findTarget(divList,code);
     toggleVisuals(div);
 
     let audioFile;
@@ -90,7 +91,7 @@
   }
   
     document.addEventListener('keydown', activateKey);
-    document.getElementsByClassName("div").addEventListener("transitionend", deactivateKey);
+    //document.getElementsByClassName("div").addEventListener("transitionend", deactivateKey);
 
   
 </script>
