@@ -68,8 +68,9 @@
     toggleVisuals(div);
 
     let audioFile = document.querySelector(`audio[data-key="${code}"]`);
-    let sound = audioFile.getAttribute('src');
-    audioFile.play(sound);
+    //let sound = audioFile.getAttribute('src');
+    audioFile.currentTime=0; //rewinds to start
+    audioFile.play();
   }
   
     document.addEventListener('keydown', activateKey);
