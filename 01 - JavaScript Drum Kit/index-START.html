@@ -58,12 +58,15 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  function toggleVisuals(targetDiv){
+    targetDiv.classList.toggle('playing');
+  }
+  
   function activateKey(e) {
     let code = e.keyCode; 
     let divList = document.querySelectorAll("div.key");
    
     let div;
-
     for(i=0; i<divList.length; i++){  
       let currentDiv=divList[i];
       if (currentDiv.getAttribute('data-key')==code){
@@ -71,7 +74,7 @@
         break;
       }   
     }
-    div.classList.toggle('playing'); //eh, need it to be short transition back and forth.  will work on this.
+    toggleVisuals(div);
 
     let audioFile;
     let soundList = document.querySelectorAll("audio");
@@ -87,6 +90,8 @@
   }
   
     document.addEventListener('keydown', activateKey);
+    document.getElementsByClassName("div").addEventListener("transitionend", deactivateKey);
+
   
 </script>
 
