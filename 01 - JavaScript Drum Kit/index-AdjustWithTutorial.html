@@ -58,22 +58,23 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  function toggleVisuals(targetDiv){
-    targetDiv.classList.toggle('playing');
+  function removeTransition(e){
+    if(e.propertyName !== 'transform') return;
+    this.classList.remove('playing'); //"this" = the current key
   }
-
   function activateKey(e) {
     let code = e.keyCode;    
     let div = document.querySelector(`div[data-key="${code}"]`);
-    toggleVisuals(div);
-
     let audioFile = document.querySelector(`audio[data-key="${code}"]`);
-    //let sound = audioFile.getAttribute('src');
     audioFile.currentTime=0; //rewinds to start
     audioFile.play();
+    div.classList.add('playing');
   }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
   
-    document.addEventListener('keydown', activateKey);
+  document.addEventListener('keydown', activateKey);
   
 </script>
 
