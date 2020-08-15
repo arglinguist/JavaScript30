@@ -62,13 +62,20 @@
     if(e.propertyName !== 'transform') return;
     this.classList.remove('playing'); //"this" = the current key
   }
-  function activateKey(e) {
-    let code = e.keyCode;    
-    let div = document.querySelector(`div[data-key="${code}"]`);
-    let audioFile = document.querySelector(`audio[data-key="${code}"]`);
-    audioFile.currentTime=0; //rewinds to start
+  function playSound(e){
+    let audioFile = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    audioFile.currentTime=0; 
     audioFile.play();
+  }
+
+  function addTransition(e){
+    let div = document.querySelector(`div[data-key="${e.keyCode}"]`);
     div.classList.add('playing');
+  }
+
+  function activateKey(e) {
+    playSound(e);
+    addTransition(e);
   }
 
   const keys = document.querySelectorAll('.key');
