@@ -60,8 +60,9 @@
 <script>
   function removeTransition(e){
     if(e.propertyName !== 'transform') return;
-    this.classList.remove('playing'); //"this" = the current key
+    this.classList.remove('playing'); 
   }
+
   function playSound(e){
     let audioFile = document.querySelector(`audio[data-key="${e.keyCode}"]`);
     audioFile.currentTime=0; 
