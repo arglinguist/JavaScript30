@@ -63,13 +63,14 @@
   }
   
   function findTarget(fullList, targetAttribute, targetValue){ 
-        for(i=0; i<fullList.length; i++){  
-          let currentSelection=fullList[i];
-          if (currentSelection.getAttribute(targetAttribute)==targetValue){
-            return currentSelection;  
-          }   
-        }
-      }
+    for(i=0; i<fullList.length; i++){  
+      let currentSelection=fullList[i];
+      if (currentSelection.getAttribute(targetAttribute)==targetValue){
+        return currentSelection;  
+      }   
+    }
+  }
+
   function activateKey(e) {
     let code = e.keyCode; 
     let divList = document.querySelectorAll("div.key");
@@ -77,22 +78,13 @@
     let div = findTarget(divList, 'data-key', code);
     toggleVisuals(div);
 
-    let audioFile;
     let soundList = document.querySelectorAll("audio");
-    for(i=0; i<soundList.length; i++){  
-      let currentAudio=soundList[i];
-      if (currentAudio.getAttribute('data-key')==code){
-        audioFile=currentAudio; 
-        break;
-      }   
-    }
+    let audioFile = findTarget (soundList, 'data-key', code);
     let sound = audioFile.getAttribute('src');
     audioFile.play(sound);
   }
   
     document.addEventListener('keydown', activateKey);
-    //document.getElementsByClassName("div").addEventListener("transitionend", deactivateKey);
-
   
 </script>
 
