@@ -58,36 +58,7 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  function activateKey(e) {
-    let code = e.keyCode; 
-    let divList = document.querySelectorAll("div.key");
-   
-    let div;
 
-    for(i=0; i<divList.length; i++){  
-      let currentDiv=divList[i];
-      if (currentDiv.getAttribute('data-key')==code){
-        div=currentDiv;  
-        break;
-      }   
-    }
-    div.classList.toggle('playing'); //eh, need it to be short transition back and forth.  will work on this.
-
-    let audioFile;
-    let soundList = document.querySelectorAll("audio");
-    for(i=0; i<soundList.length; i++){  
-      let currentAudio=soundList[i];
-      if (currentAudio.getAttribute('data-key')==code){
-        audioFile=currentAudio; 
-        break;
-      }   
-    }
-    let sound = audioFile.getAttribute('src');
-    audioFile.play(sound);
-  }
-  
-    document.addEventListener('keydown', activateKey);
-  
 </script>
 
 
