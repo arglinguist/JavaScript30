@@ -62,19 +62,19 @@
     targetDiv.classList.toggle('playing');
   }
   
-  function findTarget(fullList,target){
-    for(i=0; i<fullList.length; i++){  
-      let currentSelection=fullList[i];
-      if (currentSelection.getAttribute('data-key')==target){
-        return currentSelection;  
-      }   
-    }
-  }
+  function findTarget(fullList, targetAttribute, targetValue){ 
+        for(i=0; i<fullList.length; i++){  
+          let currentSelection=fullList[i];
+          if (currentSelection.getAttribute(targetAttribute)==targetValue){
+            return currentSelection;  
+          }   
+        }
+      }
   function activateKey(e) {
     let code = e.keyCode; 
     let divList = document.querySelectorAll("div.key");
    
-    let div = findTarget(divList,code);
+    let div = findTarget(divList, 'data-key', code);
     toggleVisuals(div);
 
     let audioFile;
